@@ -7,5 +7,5 @@ Projeto para portfólio, mostrando habilidades em backend, banco de dados e aná
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/job-insights.git
+   git clone hhttps://github.com/JaninyNobrega/job-insights.git
    cd job-insights
