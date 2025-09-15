@@ -3,8 +3,8 @@ const searchInput = document.getElementById("search");
 const locationFilter = document.getElementById("filter-location");
 const btnPDF = document.getElementById("btn-pdf");
 
-const API_URL = "http://127.0.0.1:9000/jobs/";
-const PDF_URL = "http://127.0.0.1:9000/reports/pdf";
+const API_URL = "/jobs/";
+const PDF_URL = "/reports/pdf";
 
 let jobsData = [];
 
