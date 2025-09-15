@@ -11,4 +11,4 @@ class Job(SQLModel, table=True):
     salary_max: Optional[float] = None
     seniority: str
     posted_at: datetime
-    job_url: Optional[str] = None  # ← Novo campo para a URL da vaga
+    job_url: Optional[str] = None 

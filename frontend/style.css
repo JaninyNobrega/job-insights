@@ -3,16 +3,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* Cores principais */
 :root {
-  --primary-color: #1E3A8A; /* azul escuro */
-  --secondary-color: #2563EB; /* azul médio */
-  --bg-color: #F3F4F6; /* cinza claro */
+  --primary-color: #1e3a8a; /* azul escuro */
+  --secondary-color: #2563eb; /* azul médio */
+  --bg-color: #f3f4f6; /* cinza claro */
   --text-color: #111827; /* preto suave */
-  --card-bg: #FFFFFF;
+  --card-bg: #ffffff;
 }
 
 /* Corpo */
@@ -59,7 +59,7 @@ main {
   margin-bottom: 1.5rem;
 }
 
-.filter-input, 
+.filter-input,
 .filter-select {
   padding: 0.8rem;
   border: 1px solid #ccc;
@@ -99,13 +99,13 @@ main {
   background-color: var(--card-bg);
   border-radius: 0.8rem;
   padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .job-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .job-card h3 {
@@ -134,5 +134,74 @@ footer {
   padding: 1.5rem;
   margin-top: 2rem;
   font-size: 0.9rem;
-  color: #6B7280;
+  color: #6b7280;
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+  }
+
+  main {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+
+  /* Filtros empilhados e ocupando largura total */
+  .filters {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filter-input,
+  .filter-select,
+  .filter-btn {
+    flex: 1 1 100%;
+    min-width: auto;
+  }
+
+  /* Cards mais compactos */
+  .job-card {
+    padding: 0.8rem;
+  }
+
+  .job-card h3 {
+    font-size: 1rem;
+  }
+
+  .job-card p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  header p {
+    font-size: 0.8rem;
+  }
+
+  .job-card {
+    padding: 0.6rem;
+  }
+
+  .job-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .job-card p {
+    font-size: 0.8rem;
+  }
+
+  #jobs-container {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
 }

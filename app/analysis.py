@@ -9,12 +9,15 @@ def salary_analysis(session: Session) -> dict:
 
     salary_by_seniority = defaultdict(list)
     for job in jobs:
-        avg_salary = (job.salary_min + job.salary_max) / 2
-        salary_by_seniority[job.seniority].append(avg_salary)
+        # Ignora vagas sem salário
+        if job.salary_min is not None and job.salary_max is not None:
+            avg_salary = (job.salary_min + job.salary_max) / 2
+            salary_by_seniority[job.seniority].append(avg_salary)
 
     result = {}
     for seniority, salaries in salary_by_seniority.items():
-        result[seniority] = sum(salaries)/len(salaries)
+        if salaries:
+            result[seniority] = sum(salaries) / len(salaries)
 
     return {"salary_by_seniority": result}
 
