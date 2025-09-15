@@ -1,23 +1,25 @@
 import pandas as pd
-from sqlmodel import Session
 from app.db import engine
+from sqlmodel import Session
 from app.models import Job
 
-# Lê o CSV
-df = pd.read_csv("data/jobs.csv")
+def seed_data():
+    df = pd.read_csv("data/jobs.csv")
 
-with Session(engine) as session:
-    for _, row in df.iterrows():
-        job = Job(
-            title=row['title'],
-            company=row['company'],
-            location=row['location'],
-            salary_min=row['salary_min'],
-            salary_max=row['salary_max'],
-            seniority=row['seniority'],
-            posted_at=row['posted_at']
-        )
-        session.add(job)
-    session.commit()
+    with Session(engine) as session:
+        for _, row in df.iterrows():
+            job = Job(
+                title=row["title"],
+                company=row["company"],
+                location=row["location"],
+                salary_min=row["salary_min"],
+                salary_max=row["salary_max"],
+                seniority=row["seniority"],
+                posted_at=row["posted_at"]
+            )
+            session.add(job)
+        session.commit()
+    print("✅ Dados populados com sucesso!")
 
-print("Banco populado com sucesso!")
+if __name__ == "__main__":
+    seed_data()

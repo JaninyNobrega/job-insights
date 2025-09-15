@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Insights</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Job Insights</h1>
+    <p>Vagas reais de tecnologia, direto no seu navegador</p>
+  </header>
+
+  <main>
+    <section class="jobs-section">
+      <h2>Vagas Disponíveis</h2>
+
+      <div class="filters">
+        <input type="text" id="search" class="filter-input" placeholder="Pesquisar por cargo ou empresa...">
+        <select id="filter-location" class="filter-select">
+            <option value="">Todos os locais</option>
+        </select>
+        <button id="btn-search" class="filter-btn">Buscar</button>
+        <button id="btn-pdf" class="filter-btn">Gerar PDF</button>
+      </div>
+
+      <div id="jobs-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>💼 Job Insights &copy; 2025</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
