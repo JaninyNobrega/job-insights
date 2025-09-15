@@ -1,4 +1,5 @@
 ﻿from fastapi import FastAPI, Depends
+from fastapi.staticfiles import StaticFiles
 from sqlmodel import Session, select
 from app.db import get_session, create_db_and_tables
 from app.models import Job
@@ -10,6 +11,7 @@ from io import BytesIO
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Job Insights API")
+app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
 
 origins = [
     "http://127.0.0.1:5500",  # endereço do frontend
