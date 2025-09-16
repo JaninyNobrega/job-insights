@@ -23,7 +23,7 @@ app = FastAPI()
 origins = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "https://magical-melba-8866a4.netlify.app",  # << adicione sua URL do Netlify
+    "https://https://job-insights-vagas.netlify.app/",  # << adicione sua URL do Netlify
     "https://job-insights-st3y.onrender.com/"  # (opcional) se quiser permitir também acesso direto
 ]
 
