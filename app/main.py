@@ -11,8 +11,13 @@ import requests
 from datetime import datetime
 from typing import List
 from fastapi.staticfiles import StaticFiles
+from app.populate import populate_jobs
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger   
 
-app = FastAPI(title="Job Insights API")
+
+app = FastAPI()
 
 # Configuração CORS para frontend
 origins = [
@@ -30,9 +35,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],    
 )
-
-# Sirva o diretório frontend (certifique-se de que o caminho esteja correto)
-# app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
 
 # Função para transformar dados da API externa em Job
 def transform_remote_job(job_data):
@@ -72,15 +74,33 @@ def fetch_and_save_jobs(limit=20):
 # Evento de startup
 @app.on_event("startup")
 def on_startup():
-    create_db_and_tables()
-    # Popular o banco automaticamente se estiver vazio
-    with Session(engine) as session:
+    with next(get_session()) as session:
+        # Conta quantos registros existem (correção do .count())
         total_jobs = len(session.exec(select(Job)).all())
+
         if total_jobs == 0:
-            print("Banco vazio. Populando com vagas iniciais...")
-            fetch_and_save_jobs()
+            print("💡 Nenhuma vaga encontrada. Populando banco de dados...")
+            populate_jobs(session)  # insere dados iniciais
+            print("✅ Banco populado com sucesso!")
         else:
-            print(f"Banco já possui {total_jobs} vagas.")
+            print(f"🔎 Banco já possui {total_jobs} vagas.")
+
+# --- Agendador para atualizar as vagas automaticamente ---
+scheduler = BackgroundScheduler()
+
+def job_update():
+    print("🔄 Atualizando vagas automaticamente...")
+    with Session(engine) as session:
+        populate_jobs(session)
+
+# Configura para rodar a cada 6 horas (pode mudar para 24h, 1h etc.)
+scheduler.add_job(job_update, IntervalTrigger(hours=6))
+
+# Inicia o agendador
+scheduler.start()
+
+# Garante que vai desligar corretamente ao encerrar o app
+atexit.register(lambda: scheduler.shutdown())
 
 # Endpoints
 @app.get("/")
