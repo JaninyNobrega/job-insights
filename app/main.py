@@ -29,7 +29,7 @@ app.add_middleware(
 )
 
 # Sirva o diretório frontend (certifique-se de que o caminho esteja correto)
-app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
+# app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
 
 # Função para transformar dados da API externa em Job
 def transform_remote_job(job_data):

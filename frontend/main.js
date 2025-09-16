@@ -2,9 +2,12 @@ const jobsContainer = document.getElementById("jobs-container");
 const searchInput = document.getElementById("search");
 const locationFilter = document.getElementById("filter-location");
 const btnPDF = document.getElementById("btn-pdf");
+const btnSearch = document.getElementById("btn-search"); // <-- novo
 
-const API_URL = "/jobs/";
-const PDF_URL = "/reports/pdf";
+// FRONTEND: main.js
+const BACKEND_BASE = "https://job-insights-st3y.onrender.com"; // <--- substitua aqui se mudar
+const API_URL = `${BACKEND_BASE}/jobs/`;
+const PDF_URL = `${BACKEND_BASE}/reports/pdf`;
 
 let jobsData = [];
 
@@ -28,7 +31,6 @@ async function fetchJobs() {
 function populateLocations() {
     locationFilter.innerHTML = "";
     
-    // Adicionando a opção padrão
     const defaultOption = document.createElement("option");
     defaultOption.value = "";
     defaultOption.textContent = "Todos os locais";
@@ -79,6 +81,7 @@ function generatePDF() {
 searchInput.addEventListener("input", displayJobs);
 locationFilter.addEventListener("change", displayJobs);
 btnPDF.addEventListener("click", generatePDF);
+btnSearch.addEventListener("click", displayJobs); // <-- novo evento
 
 // Inicializa
 fetchJobs();
