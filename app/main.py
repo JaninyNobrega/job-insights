@@ -75,7 +75,7 @@ def on_startup():
     create_db_and_tables()
     # Popular o banco automaticamente se estiver vazio
     with Session(engine) as session:
-        total_jobs = session.exec(select(Job)).count()
+        total_jobs = len(session.exec(select(Job)).all())
         if total_jobs == 0:
             print("Banco vazio. Populando com vagas iniciais...")
             fetch_and_save_jobs()
