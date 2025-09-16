@@ -23,8 +23,8 @@ app = FastAPI()
 origins = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "https://https://job-insights-vagas.netlify.app/",  # << adicione sua URL do Netlify
-    "https://job-insights-st3y.onrender.com/"  # (opcional) se quiser permitir também acesso direto
+    "https://job-insights-vagas.netlify.app/", 
+    "https://job-insights-st3y.onrender.com/"  
 ]
 
 
@@ -75,7 +75,7 @@ def fetch_and_save_jobs(limit=20):
 @app.on_event("startup")
 def on_startup():
     with next(get_session()) as session:
-        # Conta quantos registros existem (correção do .count())
+       
         total_jobs = len(session.exec(select(Job)).all())
 
         if total_jobs == 0:

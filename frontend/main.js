@@ -2,10 +2,10 @@ const jobsContainer = document.getElementById("jobs-container");
 const searchInput = document.getElementById("search");
 const locationFilter = document.getElementById("filter-location");
 const btnPDF = document.getElementById("btn-pdf");
-const btnSearch = document.getElementById("btn-search"); // <-- novo
+const btnSearch = document.getElementById("btn-search");
 
-// FRONTEND: main.js
-const BACKEND_BASE = "https://job-insights-st3y.onrender.com"; // <--- substitua aqui se mudar
+
+const BACKEND_BASE = "https://job-insights-st3y.onrender.com"; 
 const API_URL = `${BACKEND_BASE}/jobs/`;
 const PDF_URL = `${BACKEND_BASE}/reports/pdf`;
 
@@ -81,7 +81,7 @@ function generatePDF() {
 searchInput.addEventListener("input", displayJobs);
 locationFilter.addEventListener("change", displayJobs);
 btnPDF.addEventListener("click", generatePDF);
-btnSearch.addEventListener("click", displayJobs); // <-- novo evento
+btnSearch.addEventListener("click", displayJobs);
 
 // Inicializa
 fetchJobs();
