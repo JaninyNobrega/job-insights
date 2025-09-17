@@ -11,7 +11,8 @@ def populate_jobs(session):
         response.raise_for_status()
         data = response.json()
 
-        jobs_data = data.get("jobs", [])[:10]  # pega só as 10 primeiras vagas
+        # Remove o slice para buscar todas as vagas disponíveis
+        jobs_data = data.get("jobs", [])
 
         job_entries = []
         for job in jobs_data:
