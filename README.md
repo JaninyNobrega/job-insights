@@ -8,10 +8,9 @@
 
 **Job Insights API** é uma aplicação backend moderna construída com **Python e FastAPI** que coleta, armazena e analisa vagas de trabalho remoto automaticamente.  
 
-
 ---
 
-## 🎬 Demonstração (GIF ou screenshots)
+## 🎬 Demonstração (GIF)
 
 ![Dashboard GIF](https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif)  
 *Exemplo de geração de relatórios em PDF e análise de dados de vagas*
@@ -41,8 +40,7 @@
 - Atualização programada a cada 6 horas (configurável)  
 - População inicial do banco caso esteja vazio  
 - Endpoints de consulta e criação de vagas:
-  - `GET /jobs/` – Lista todas as vagas  
-  - `POST /jobs/` – Cria nova vaga  
+  - `GET /jobs/` – Lista todas as vagas     
   - `GET /analytics/salary` – Salários por senioridade  
   - `GET /analytics/location` – Vagas por localização  
   - `GET /reports/pdf` – Relatório em PDF completo  
@@ -60,6 +58,8 @@
 ---
 
 ## 💻 Estrutura do projeto
+
+<img width="477" height="219" alt="image" src="https://github.com/user-attachments/assets/57b9ca4a-752e-44b5-b258-b9c0833f192a" />
 
 
 ---
@@ -94,19 +94,12 @@ create_db_and_tables()
 
 uvicorn app.main:app --reload
 
-
 A API estará disponível em: http://127.0.0.1:8000
 
 
 🌟 Diferenciais
 
-Código limpo, modular e escalável, pronto para produção
-
-Atualizações automáticas de vagas com APScheduler
-
-Insights reais do mercado remoto para tomada de decisão
-
-Geração de relatórios em PDF completos e profissionais
+Código limpo, modular e escalável, pronto para produção - Atualizações automáticas de vagas com APScheduler - Insights reais do mercado remoto para tomada de decisão - Geração de relatórios em PDF completos e profissionais
 
 📝 Próximos passos / melhorias
 
