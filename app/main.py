@@ -70,14 +70,14 @@ def fetch_and_save_jobs(limit=20):
 # Evento de startup
 @app.on_event("startup")
 def on_startup():
-    # Cria as tabelas antes de usar
+    # Cria as tabelas no banco de dados caso ainda não existam
     create_db_and_tables()
-
-    with Session(engine) as session:
+    
+    with next(get_session()) as session:
         total_jobs = len(session.exec(select(Job)).all())
         if total_jobs == 0:
             print("💡 Nenhuma vaga encontrada. Populando banco de dados...")
-            populate_jobs(session)
+            populate_jobs(session)  # insere dados iniciais
             print("✅ Banco populado com sucesso!")
         else:
             print(f"🔎 Banco já possui {total_jobs} vagas.")
