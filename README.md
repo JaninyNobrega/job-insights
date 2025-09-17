@@ -12,11 +12,7 @@
 
 ## 🎬 Demonstração (GIF)
 
-![Dashboard GIF](https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif)  
-*Exemplo de geração de relatórios em PDF e análise de dados de vagas*
-
-![Mapa de vagas](https://via.placeholder.com/600x300.png?text=Mapa+de+vagas+por+país)  
-*Distribuição das vagas por país / localização*
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/37fedf2e-34a0-442b-86d1-f6b288614a39" />
 
 ---
 
