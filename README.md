@@ -10,7 +10,7 @@
 
 ---
 
-## 🎬 Demonstração (GIF)
+## 🎬 Demonstração
 
 <img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/37fedf2e-34a0-442b-86d1-f6b288614a39" />
 
