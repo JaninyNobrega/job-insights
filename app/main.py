@@ -10,12 +10,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import requests
 from datetime import datetime
 from typing import List
-from fastapi.staticfiles import StaticFiles
 from app.populate import populate_jobs
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
-
 
 app = FastAPI()
 
@@ -27,8 +25,6 @@ app.add_middleware(
         "http://localhost:5500",
         "http://127.0.0.1:8000",
         "http://localhost:8000",
-        # permite qualquer domínio *.netlify.app
-        # importante para quando você mudar o nome do site no Netlify
     ],
     allow_origin_regex=r"https://.*\.netlify\.app",
     allow_credentials=True,
@@ -36,8 +32,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Função para tr
-# ansformar dados da API externa em Job
+# Função para transformar dados da API externa em Job
 def transform_remote_job(job_data):
     posted_at_str = job_data.get("publication_date")
     posted_at = None
@@ -75,13 +70,14 @@ def fetch_and_save_jobs(limit=20):
 # Evento de startup
 @app.on_event("startup")
 def on_startup():
-    with next(get_session()) as session:
-       
-        total_jobs = len(session.exec(select(Job)).all())
+    # Cria as tabelas antes de usar
+    create_db_and_tables()
 
+    with Session(engine) as session:
+        total_jobs = len(session.exec(select(Job)).all())
         if total_jobs == 0:
             print("💡 Nenhuma vaga encontrada. Populando banco de dados...")
-            populate_jobs(session)  # insere dados iniciais
+            populate_jobs(session)
             print("✅ Banco populado com sucesso!")
         else:
             print(f"🔎 Banco já possui {total_jobs} vagas.")
@@ -94,13 +90,9 @@ def job_update():
     with Session(engine) as session:
         populate_jobs(session)
 
-# Configura para rodar a cada 6 horas (pode mudar para 24h, 1h etc.)
+# Configura para rodar a cada 6 horas
 scheduler.add_job(job_update, IntervalTrigger(hours=6))
-
-# Inicia o agendador
 scheduler.start()
-
-# Garante que vai desligar corretamente ao encerrar o app
 atexit.register(lambda: scheduler.shutdown())
 
 # Endpoints
