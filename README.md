@@ -95,15 +95,16 @@ A API estará disponível em: http://127.0.0.1:8000
 
 🌟 Diferenciais
 
-Código limpo, modular e escalável, pronto para produção - Atualizações automáticas de vagas com APScheduler - Insights reais do mercado remoto para tomada de decisão - Geração de relatórios em PDF completos e profissionais
+Código limpo, modular e escalável, pronto para produção; 
+Atualizações automáticas de vagas com APScheduler;
+Insights reais do mercado remoto para tomada de decisão;
+Geração de relatórios em PDF completos e profissionais.
 
 📝 Próximos passos / melhorias
 
-Integração com APIs adicionais (LinkedIn, Indeed, etc.)
-
-Dashboard frontend interativo com gráficos dinâmicos
-
-Filtragem avançada de vagas por tecnologia, senioridade ou salário
+Integração com APIs adicionais (LinkedIn, Indeed, etc.);
+Dashboard frontend interativo com gráficos dinâmicos;
+Filtragem avançada de vagas por tecnologia, senioridade ou salário.
 
 🔗 Links
 
