@@ -129,12 +129,36 @@ main {
 }
 
 /* Footer */
-footer {
+.site-footer {
+  background-color: var(--primary-color);
+  color: white;
   text-align: center;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  font-size: 0.9rem;
-  color: #6b7280;
+  padding: 0.8rem 0.8rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.site-footer p {
+  margin: 0.2rem 0;
+}
+
+.social-links {
+  margin: 0.2rem 0;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.2rem;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--secondary-color);
 }
 
 /* Media Queries para dispositivos móveis */
