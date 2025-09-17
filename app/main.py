@@ -14,29 +14,30 @@ from fastapi.staticfiles import StaticFiles
 from app.populate import populate_jobs
 import atexit
 from apscheduler.schedulers.background import BackgroundScheduler
-from apscheduler.triggers.interval import IntervalTrigger   
+from apscheduler.triggers.interval import IntervalTrigger
 
 
 app = FastAPI()
 
 # Configuração CORS para frontend
-origins = [
-    "http://127.0.0.1:5500",
-    "http://localhost:5500",
-    "https://job-insights-vagas.netlify.app/", 
-    "https://job-insights-st3y.onrender.com/"  
-]
-
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        "http://127.0.0.1:8000",
+        "http://localhost:8000",
+        # permite qualquer domínio *.netlify.app
+        # importante para quando você mudar o nome do site no Netlify
+    ],
+    allow_origin_regex=r"https://.*\.netlify\.app",
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],    
+    allow_headers=["*"],
 )
 
-# Função para transformar dados da API externa em Job
+# Função para tr
+# ansformar dados da API externa em Job
 def transform_remote_job(job_data):
     posted_at_str = job_data.get("publication_date")
     posted_at = None

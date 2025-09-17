@@ -4,8 +4,15 @@ const locationFilter = document.getElementById("filter-location");
 const btnPDF = document.getElementById("btn-pdf");
 const btnSearch = document.getElementById("btn-search");
 
+// Detecta ambiente automaticamente
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 
-const BACKEND_BASE = "https://job-insights-st3y.onrender.com"; 
+// Usa backend local quando rodando na sua máquina
+// Usa Render quando está no Netlify ou em produção
+const BACKEND_BASE = isLocal
+  ? "http://127.0.0.1:8000"
+  : "https://job-insights-st3y.onrender.com";
+
 const API_URL = `${BACKEND_BASE}/jobs/`;
 const PDF_URL = `${BACKEND_BASE}/reports/pdf`;
 
