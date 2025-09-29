@@ -8,7 +8,7 @@ import tempfile
 import os
 
 def generate_pdf_report(session: Session) -> bytes:
-    """Gera PDF com análises de salários e vagas por cidade"""
+    """Gera PDF com análises de salários e vagas por país"""
     try:
         analysis = salary_analysis(session)
         salary_by_seniority = analysis.get("salary_by_seniority", {})
@@ -54,7 +54,7 @@ def generate_pdf_report(session: Session) -> bytes:
         location_counts = jobs_by_location(session)
         pdf.add_page()
         pdf.set_font("Arial", "B", 14)
-        pdf.cell(0, 10, "Vagas por Cidade:", ln=True)
+        pdf.cell(0, 10, "Vagas por País:", ln=True)
         pdf.ln(5)
         pdf.set_font("Arial", "", 12)
         if location_counts:
